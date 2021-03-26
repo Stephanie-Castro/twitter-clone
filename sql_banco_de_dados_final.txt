@@ -1,0 +1,28 @@
+CREATE DATABASE twitter_clone
+DEFAULT CHARACTER SET utf8
+DEFAULT COLLATE utf8_general_ci; /* formatos brasileiros, cria a tabela de forma mais específica */
+
+USE twitter_clone;
+
+CREATE TABLE usuarios(
+	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	usuario VARCHAR(50) NOT NULL,
+	email VARCHAR(100) NOT NULL,
+	senha VARCHAR(32) NOT NULL
+) DEFAULT CHARSET = utf8; /* padrão brasileiro */
+
+CREATE TABLE tweet(
+	id_tweet INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	id_usuario INT NOT NULL,
+	tweet VARCHAR(140) NOT NULL,
+	data_inclusao DATETIME DEFAULT CURRENT_TIMESTAMP
+) DEFAULT CHARSET = utf8; /* padrão brasileiro */
+
+/* Tabela que registra o id do usuário "atual" e o id do usuário que está sendo seguido */
+CREATE TABLE usuarios_seguidores(
+	id_usuario_seguidor INT NOT NULL AUTO_INCREMENT,
+	id_usuario INT NOT NULL,
+	seguindo_id_usuario INT NOT NULL,
+	data_registro DATETIME DEFAULT CURRENT_TIMESTAMP,
+	PRIMARY KEY(id_usuario_seguidor) /* Outro modo de definir Primary Key */
+) DEFAULT CHARSET = utf8; /* padrão brasileiro */
